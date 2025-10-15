@@ -1,0 +1,216 @@
+{{ 'design-uploader.css' | asset_url | stylesheet_tag }}
+
+<div class="custom-upload-container">
+  <h2>{{ section.settings.heading }}</h2>
+
+  <!-- Upload Section -->
+  <div class="upload-section">
+    <label for="front-upload" id="front-label" class="file-label">📤 Upload Front Design</label>
+    <input type="file" id="front-upload" accept="image/*">
+    <img id="front-preview" class="file-preview" style="display:none" width="300" height="300">
+
+    <label for="back-upload" id="back-label" class="file-label">📤 Upload Back Design (Optional)</label>
+    <input type="file" id="back-upload" accept="image/*">
+    <img id="back-preview" class="file-preview" style="display:none" width="300" height="300">
+  </div>
+
+  <!-- Options -->
+  <div class="upload-section">
+    <div class="form-group">
+      <label>Color</label>
+      <input type="color" id="color-input" value="#000000">
+    </div>
+    <div class="form-group">
+      <label>Size</label>
+      <select id="size-select">
+        <option value="">Select Size</option>
+        <option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Quantity</label>
+      <input type="number" id="quantity-input" min="1" value="1">
+    </div>
+    <div class="form-group">
+      <label>Notes</label>
+      <textarea id="note-input"></textarea>
+    </div>
+  </div>
+
+  <!-- Price -->
+  <div class="price-display">
+    <h3 id="total-price">Total: ${{ section.settings.base_price | default: 30 }}.00</h3>
+    <div id="price-breakdown">Base: ${{ section.settings.base_price | default: 30 }} × 1</div>
+  </div>
+
+  <!-- Actions -->
+  <div class="actions">
+    <button id="add-more-btn" type="button" class="add-more-btn">Add more</button>
+    <button id="upload-btn" type="button" class="upload-btn">Add to Cart & Checkout</button>
+  </div>
+
+  <div id="upload-status" class="status-text"></div>
+
+  <h3>Added items</h3>
+  <div id="design-list"></div>
+</div>
+
+<script>
+  const variantId = {{ product.selected_or_first_available_variant.id | default: 0 }};
+  console.log("👉 Using variantId:", variantId);
+  
+(function(){
+  const basePrice = {{ section.settings.base_price | default: 30 }};
+  const frontPrice = {{ section.settings.front_price | default: 10 }};
+  const backPrice = {{ section.settings.back_price | default: 10 }};
+  const variantId = {{ product.selected_or_first_available_variant.id | json }};
+
+  let hasFront = false, hasBack = false, qty = 1, color = "#000000", size = "", note = "";
+  const designList = [];
+
+  // 💰 Calculate Price
+  function computeTotal() {
+    return (basePrice + (hasFront ? frontPrice : 0) + (hasBack ? backPrice : 0)) * qty;
+  }
+
+  function updatePrice() {
+    qty = parseInt(document.getElementById('quantity-input').value || '1', 10);
+    const total = computeTotal();
+    document.getElementById('total-price').textContent = `Total: $${total.toFixed(2)}`;
+    let breakdown = `Base: $${basePrice} × ${qty}`;
+    if (hasFront) breakdown += ` + Front: $${frontPrice} × ${qty}`;
+    if (hasBack) breakdown += ` + Back: $${backPrice} × ${qty}`;
+    document.getElementById('price-breakdown').textContent = breakdown;
+  }
+
+  // 🧾 Render Added Items
+  function renderList() {
+    const c = document.getElementById('design-list');
+    c.innerHTML = designList.map((d,i)=>`
+      <div class="added-item">
+        <strong>Item #${i+1}</strong> | Color: ${d.color} | Size: ${d.size} | Qty: ${d.qty} | Total: $${d.total}
+      </div>
+    `).join('');
+  }
+
+  // 🖼 File Upload Preview
+  function setupFile(id, prevId, labelId, type) {
+    const input=document.getElementById(id),
+          prev=document.getElementById(prevId),
+          label=document.getElementById(labelId);
+    input.addEventListener('change',e=>{
+      const f=e.target.files[0];
+      if(f){
+        if(type==='front') hasFront=true;
+        if(type==='back') hasBack=true;
+        const r=new FileReader();
+        r.onload=ev=>{
+          prev.src=ev.target.result;
+          prev.style.display='block';
+          label.textContent=`✅ ${type} selected`;
+        };
+        r.readAsDataURL(f);
+      } else {
+        if(type==='front') hasFront=false;
+        if(type==='back') hasBack=false;
+        prev.style.display='none';
+        label.textContent=`📤 Upload ${type}`;
+      }
+      updatePrice();
+    });
+  }
+
+  setupFile('front-upload','front-preview','front-label','front');
+  setupFile('back-upload','back-preview','back-label','back');
+  document.getElementById('quantity-input').addEventListener('input', updatePrice);
+  document.getElementById('color-input').addEventListener('input', e=>color=e.target.value);
+  document.getElementById('size-select').addEventListener('change', e=>size=e.target.value);
+  document.getElementById('note-input').addEventListener('input', e=>note=e.target.value);
+
+  // ➕ Add More Items
+  document.getElementById('add-more-btn').addEventListener('click', (e)=>{
+    e.preventDefault();
+    if(!hasFront || !size){
+      document.getElementById('upload-status').textContent="❌ Front design & size required";
+      return;
+    }
+    const total = computeTotal();
+    designList.push({ color, size, qty, note, hasFront, hasBack, total });
+    renderList();
+    document.getElementById('upload-status').textContent="✅ Item added successfully!";
+  });
+
+  // 🛒 Add to Cart (fixed)
+  document.getElementById('upload-btn').addEventListener('click', async (e)=>{
+    e.preventDefault();
+    const statusDiv=document.getElementById('upload-status');
+
+    if (!variantId) {
+      statusDiv.textContent="⚠️ Product variant not found";
+      return;
+    }
+
+    if (designList.length === 0) {
+      if (!hasFront || !size) {
+        statusDiv.textContent="❌ Front design & size required";
+        return;
+      }
+      const total = computeTotal();
+      designList.push({ color, size, qty, note, hasFront, hasBack, total });
+    }
+
+    const items = designList.map(d => ({
+      id: variantId,
+      quantity: d.qty,
+      properties: {
+        'Front Print': d.hasFront ? 'Yes' : 'No',
+        'Back Print': d.hasBack ? 'Yes' : 'No',
+        'Color': d.color,
+        'Size': d.size,
+        'Notes': d.note || 'None',
+        'Custom Total': `$${d.total}`
+      }
+    }));
+
+    statusDiv.textContent="🔄 Adding to cart...";
+
+    try {
+      const resp = await fetch('/cart/add.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ items }),
+        credentials: 'same-origin'
+      });
+
+      if (resp.ok) {
+        statusDiv.textContent="✅ Added to cart successfully! Redirecting...";
+        setTimeout(()=>window.location.href="/cart",1500);
+      } else {
+        statusDiv.textContent="⚠️ Shopify cart API failed — fallback redirecting...";
+        const first = designList[0];
+        window.location.href = `/cart/${variantId}:${first.qty}`;
+      }
+    } catch (err) {
+      console.error("Cart Error:", err);
+      statusDiv.textContent = "❌ Something went wrong. Redirecting...";
+      const first = designList[0];
+      window.location.href = `/cart/${variantId}:${first.qty}`;
+    }
+  });
+
+  updatePrice();
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Custom Design Uploader",
+  "target": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Upload Your Design" },
+    { "type": "number", "id": "base_price", "label": "Base Price", "default": 30 },
+    { "type": "number", "id": "front_price", "label": "Front Print Price", "default": 10 },
+    { "type": "number", "id": "back_price", "label": "Back Print Price", "default": 10 }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,558 @@
+
+.uploader-container {
+  display: flex;
+  min-height: 90vh;
+  background: #f8fafc;
+}
+
+.sidebar {
+  width: 260px;
+  background: #fff;
+  padding: 1rem;
+  border-right: 1px solid #e2e8f0;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.sidebar li:hover {
+  background: #f1f5f9;
+}
+
+.Product-heading{
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  
+}
+
+.uploader-main {
+  flex: 1;
+  padding: 2rem;
+}
+
+.uploader-placeholder {
+  color: #94a3b8;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.variant-editor {
+  margin-bottom: 2rem;
+}
+
+.variant-item {
+  margin: 0.5rem 0;
+}
+
+.save-btn {
+  background: #2563eb;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.uploader-container {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  font-family: sans-serif;
+}
+
+.uploader-main {
+  flex: 1;
+  padding: 40px;
+  background-color: #f9f9f9;
+}
+
+.variant-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.variant-table th,
+.variant-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.variant-table input {
+  width: 100%;
+  padding: 6px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.variant-editor {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: #333;
+}
+
+.option-block {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 16px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+
+.option-block input {
+  margin-right: 8px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.option-block button {
+  background: #eee;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.variant-editor {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: #333;
+  padding: 20px;
+}
+
+.variant-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.option-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.option-block {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.option-block label {
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.option-values {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.option-value {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.option-value input {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.delete-btn {
+  background: transparent;
+  border: none;
+  color: #d00;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.add-btn {
+  background: #f0f0f0;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.generate-btn {
+  margin-top: 20px;
+  padding: 10px 16px;
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.variant-table-section {
+  margin-top: 30px;
+}
+
+.variant-group summary {
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.bulk-inputs {
+  display: flex;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.bulk-inputs input {
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.variant-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.variant-table th {
+  background: #f5f5f5;
+  font-weight: 600;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.variant-table td {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.variant-table tr:nth-child(even) {
+  background: #fafafa;
+}
+
+.variant-table input {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+
+.product-preview-card {
+  display: flex;
+  gap: 20px;
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  align-items: center;
+  margin-top: 30px;
+}
+
+.product-preview-image {
+  width: 250px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.product-preview-details {
+  flex: 1;
+}
+
+.product-preview-details h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.product-price {
+  font-size: 16px;
+  color: #0070f3;
+  margin-bottom: 10px;
+}
+
+.product-options {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 6px;
+}
+
+.save-button-wrapper {
+  margin-top: 20px;
+}
+
+.save-button {
+  padding: 10px 16px;
+  background-color: #0882ae;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.save-button:hover {
+  background-color: #036a8e;
+}
+
+.save-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.save-message {
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.save-message.success {
+  color: #007a3d;
+}
+
+.save-message.error {
+  color: #d00;
+}
+
+
+/* 🧩 VARIANT EDITOR WRAPPER */
+.variant-editor {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  margin-top: 20px;
+  transition: all 0.3s ease;
+}
+
+/* 🧠 TITLE */
+.variant-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 18px;
+}
+.variant-title span {
+  color: #2563eb;
+}
+
+/* ⚙️ OPTIONS SECTION */
+.option-section {
+  margin-top: 25px;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 20px;
+}
+
+.option-block label {
+  font-weight: 600;
+  color: #374151;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.option-values {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.option-value {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+
+.option-value input {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 80px;
+}
+
+.add-btn {
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s ease;
+}
+.add-btn:hover {
+  background: #1e40af;
+}
+
+.delete-btn {
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background 0.2s ease;
+}
+.delete-btn:hover {
+  background: #b91c1c;
+}
+
+/* 🔄 GENERATE BUTTON */
+.generate-btn {
+  margin-top: 20px;
+  background: #0483b1;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 13px;
+  padding: 14px 22px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.generate-btn:hover {
+  background: #036a8e;
+}
+
+/* 📦 VARIANT DROPDOWN GROUPS */
+.variant-table-section {
+  margin-top: 25px;
+}
+
+.variant-group {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.variant-group summary {
+  cursor: pointer;
+  padding: 12px 16px;
+  font-weight: 600;
+  color: #111827;
+  background: #f3f4f6;
+  border-bottom: 1px solid #e5e7eb;
+  user-select: none;
+  list-style: none;
+}
+.variant-group summary::-webkit-details-marker {
+  display: none;
+}
+
+.variant-group[open] summary {
+  background: #e0f2fe;
+  color: #0369a1;
+  border-bottom: 1px solid #bae6fd;
+}
+
+/* 📋 BULK INPUTS ABOVE EACH TABLE */
+.bulk-inputs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f3f4f6;
+  padding: 10px 16px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.bulk-inputs input {
+  padding: 6px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  width: 120px;
+  outline: none;
+  font-size: 0.9rem;
+}
+
+.bulk-inputs button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 7px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.bulk-inputs button:hover {
+  background: #1e3a8a;
+}
+
+/* 📊 TABLE STYLING */
+.variant-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.variant-table th {
+  text-align: left;
+  background: #f3f4f6;
+  padding: 10px;
+  font-weight: 600;
+  color: #374151;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.variant-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.variant-table input {
+  width: 90px;
+  padding: 5px 6px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+/* ✨ SMALL INTERACTIONS */
+.variant-group[open] {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+.variant-group summary:hover {
+  background: #f1f5f9;
+}
+
+/* 🪄 ANIMATION WHEN OPENING */
+.variant-group[open] table {
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

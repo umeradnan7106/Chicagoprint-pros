@@ -1,0 +1,175 @@
+/* ==============================
+   🎨 DESIGN UPLOADER STYLES
+   ============================== */
+
+.custom-upload-container {
+  max-width: 650px;
+  margin: 40px auto;
+  padding: 25px 30px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.custom-upload-container h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  text-align: center;
+  color: #111827;
+  margin-bottom: 25px;
+}
+
+/* 🔼 Upload Section */
+.upload-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.file-label {
+  display: inline-block;
+  background: #2563eb;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+
+.file-label:hover {
+  background: #1d4ed8;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.file-preview {
+  display: block;
+  border-radius: 12px;
+  border: 2px dashed #d1d5db;
+  object-fit: cover;
+  margin-top: 8px;
+  transition: all 0.3s ease;
+}
+
+/* 📋 Form Groups */
+.form-group {
+  flex: 1 1 48%;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: #374151;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 15px;
+  transition: all 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #2563eb;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+/* 💵 Price Display */
+.price-display {
+  text-align: center;
+  background: #f9fafb;
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+}
+
+#total-price {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+#price-breakdown {
+  font-size: 0.95rem;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+/* 🧩 Buttons */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.add-more-btn,
+.upload-btn {
+  background: #10b981;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 18px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.add-more-btn:hover,
+.upload-btn:hover {
+  background: #059669;
+}
+
+/* 📝 Status + List */
+#upload-status {
+  text-align: center;
+  margin-top: 12px;
+  font-weight: 500;
+  color: #374151;
+}
+
+#design-list {
+  margin-top: 18px;
+}
+
+#design-list > div {
+  background: #f3f4f6;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  color: #374151;
+}
+
+/* 📱 Responsive */
+@media (max-width: 640px) {
+  .upload-section {
+    flex-direction: column;
+  }
+
+  .form-group {
+    flex: 1 1 100%;
+  }
+
+  .file-preview {
+    width: 100%;
+    height: auto;
+  }
+}

@@ -10,8 +10,8 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 
 export default function Index() {
   return (
-    <Page title="Welcome to Chicago App">
-      <TitleBar title="Chicago App" />
+    <Page title="Welcome to Chicago Product App">
+      <TitleBar title="Chicago Product App" />
 
       <Layout>
         <Layout.Section>

@@ -1,18 +1,14 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
+// Prisma Schema — PostgreSQL + Supabase Ready Setup
 generator client {
   provider = "prisma-client-js"
 }
 
-// Note that some adapters may set a maximum length for the String type by default, please ensure your strings are long
-// enough when changing adapters.
-// See https://www.prisma.io/docs/orm/reference/prisma-schema-reference#string for more information
 datasource db {
-  provider = "sqlite"
-  url      = "file:dev.sqlite"
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
+// 🧠 Session model — Shopify session storage
 model Session {
   id            String    @id
   shop          String
@@ -31,22 +27,24 @@ model Session {
   emailVerified Boolean?  @default(false)
 }
 
+// 🛍 Custom Product model
 model CustomProduct {
-  id        Int       @id @default(autoincrement())
-  shopifyId String    @unique
+  id        Int             @id @default(autoincrement())
+  shopifyId String          @unique
   title     String
   image     String?
   basePrice Float
   variants  CustomVariant[]
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
 }
 
+// 🎯 Variants for each product
 model CustomVariant {
-  id          Int      @id @default(autoincrement())
+  id          Int             @id @default(autoincrement())
   title       String
   price       Float
-  inventory   Int    @default(0)
-  product     CustomProduct @relation(fields: [productId], references: [id])
+  inventory   Int             @default(0)
+  product     CustomProduct   @relation(fields: [productId], references: [id])
   productId   Int
 }

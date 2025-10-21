@@ -1,8 +1,9 @@
+// app/routes/_index/route.tsx
 import type { LoaderFunctionArgs } from "@remix-run/node";
 import { redirect } from "@remix-run/node";
 import { Form, useLoaderData } from "@remix-run/react";
 
-import { login } from "../../shopify.server";
+import { login } from "../shopify.server";
 
 import styles from "./styles.module.css";
 

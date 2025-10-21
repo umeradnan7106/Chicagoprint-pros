@@ -31,16 +31,14 @@
 
 // app/routes/webhooks.app.scopes_update.tsx
 import type { ActionFunctionArgs } from "@remix-run/node";
-import { authenticate } from "../shopify.server";
+import shopify from "../shopify.server";
 import { prisma } from "../db.server";
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   try {
-    // Verify webhook and parse payload
-    const { payload, topic, shop } = await authenticate.webhook(request);
+    const { topic, shop, payload } = await shopify.authenticate.webhook(request);
     console.log(`[Webhook] ${topic} received from ${shop}`);
 
-    // Shopify sends "current" as a comma-separated string ("read_products,write_products")
     const currentScopes =
       typeof (payload as any).current === "string"
         ? (payload as any).current
@@ -48,25 +46,20 @@ export const action = async ({ request }: ActionFunctionArgs) => {
         ? (payload as any).current.join(",")
         : "";
 
-    if (!currentScopes) {
-      console.warn(`[Webhook] No scopes found for ${shop} — acknowledging`);
-      return new Response("No scopes", { status: 200 });
+    if (currentScopes) {
+      const updated = await prisma.session.updateMany({
+        where: { shop },
+        data: { scope: currentScopes },
+      });
+      console.log(`[Webhook] Scope updated for ${shop} → ${updated.count} sessions`);
+    } else {
+      console.warn(`[Webhook] No current scopes for ${shop}`);
     }
 
-    // Update all sessions for this shop (webhook context may not include a session)
-    const updated = await prisma.session.updateMany({
-      where: { shop },
-      data: { scope: currentScopes },
-    });
-
-    console.log(
-      `[Webhook] Scope updated for ${shop}: ${currentScopes} (affected ${updated.count} sessions)`
-    );
-    // Always acknowledge fast
-    return new Response("Scope updated", { status: 200 });
+    return new Response("OK", { status: 200 });
   } catch (error) {
-    console.error(`[Webhook] Error in scopes_update:`, error);
-    // Do not leak details; still return an error code for visibility in dashboard
-    return new Response("Webhook error", { status: 500 });
+    console.error(`[Webhook] scopes_update failed:`, error);
+    // Return 200 so Shopify doesn’t retry infinitely
+    return new Response("OK", { status: 200 });
   }
 };

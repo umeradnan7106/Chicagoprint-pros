@@ -11,7 +11,7 @@ datasource db {
 // 🧠 Session model — Shopify session storage
 model Session {
   id            String    @id
-  shop          String
+  shop          String    @db.VarChar(255)
   state         String
   isOnline      Boolean   @default(false)
   scope         String?
@@ -25,6 +25,8 @@ model Session {
   locale        String?
   collaborator  Boolean?  @default(false)
   emailVerified Boolean?  @default(false)
+
+  @@index([shop])
 }
 
 // 🛍 Custom Product model

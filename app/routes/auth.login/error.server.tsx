@@ -1,3 +1,4 @@
+// app/routes/auth.login/error.server.tsx
 import type { LoginError } from "@shopify/shopify-app-remix/server";
 import { LoginErrorType } from "@shopify/shopify-app-remix/server";
 

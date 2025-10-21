@@ -1,5 +1,5 @@
 // app/routes/SaveButton.tsx
-"use client";
+
 import { useState } from "react";
 import "./styles/design-uploader.css";
 

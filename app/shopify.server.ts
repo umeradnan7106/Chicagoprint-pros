@@ -35,7 +35,6 @@
 // export const registerWebhooks = shopify.registerWebhooks;
 // export const sessionStorage = shopify.sessionStorage;
 
-// app/shopify.server.ts
 import "@shopify/shopify-app-remix/adapters/node";
 import {
   ApiVersion,
@@ -58,9 +57,29 @@ const shopify = shopifyApp({
 });
 
 export default shopify;
+
+// ✅ Proper Exports
 export const { authenticate, addDocumentResponseHeaders } = shopify;
 export const apiVersion = ApiVersion.January25;
 export const unauthenticated = shopify.unauthenticated;
-export const login = shopify.login;
 export const registerWebhooks = shopify.registerWebhooks;
 export const sessionStorage = shopify.sessionStorage;
+
+// ✅ Manual login function (custom Shopify login handler)
+export async function login(request: Request): Promise<Response | { shop: string }> {
+  const formData = await request.formData();
+  const shop = (formData.get("shop") as string | null)?.trim();
+
+  // Validate input
+  if (!shop) {
+    return { shop: "Please enter your shop domain to log in" };
+  }
+
+  // ✅ Redirect user to Shopify OAuth
+  return new Response(null, {
+    status: 302,
+    headers: {
+      Location: `/auth?shop=${encodeURIComponent(shop)}`,
+    },
+  });
+}

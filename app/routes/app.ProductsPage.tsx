@@ -1,6 +1,4 @@
 // app/routes/app.ProductsPage.tsx
-
-"use client";
 import Sidebar from "./Sidebar";
 import ProductPreview from "./ProductPreview";
 import SaveButton from "./SaveButton";

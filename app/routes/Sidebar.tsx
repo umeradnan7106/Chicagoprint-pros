@@ -48,7 +48,7 @@
 //   );
 // }
 
-
+// app/routes/Sidebar.tsx
 "use client";
 import { useEffect, useState } from "react";
 import type { Product } from "./app.ProductsPage";

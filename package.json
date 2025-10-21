@@ -16,10 +16,7 @@
     "shopify": "shopify",
     "prisma": "prisma",
     "graphql-codegen": "graphql-codegen",
-    "vite": "vite",
-  "build": "remix vite:build",
-  "start": "node server.js"
-
+    "vite": "vite"
   },
   "type": "module",
   "engines": {

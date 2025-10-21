@@ -30,14 +30,12 @@
 // }
 
 
-
 import {
   Links,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
-  useLoaderData,
 } from "@remix-run/react";
 import { json, type LoaderFunctionArgs } from "@remix-run/node";
 import { AppProvider as ShopifyAppProvider } from "@shopify/shopify-app-remix/react";
@@ -46,7 +44,7 @@ import enTranslations from "@shopify/polaris/locales/en.json";
 
 import { addDocumentResponseHeaders } from "./shopify.server";
 
-// 🔑 TypeScript ko Shopify ke injected globals ka pata nahi hota
+// TypeScript global fix
 declare global {
   interface Window {
     __SHOPIFY_API_KEY__?: string;
@@ -75,7 +73,6 @@ export default function App() {
       <body>
         <ShopifyAppProvider apiKey={apiKey!}>
           <PolarisProvider i18n={enTranslations}>
-            {/* 👇 Yahan tumhara app ka content render hoga */}
             <Outlet />
           </PolarisProvider>
         </ShopifyAppProvider>

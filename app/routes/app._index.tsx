@@ -1,3 +1,4 @@
+// app/routes/app._index.tsx
 import type { LoaderFunctionArgs } from "@remix-run/node";
 import { Page, Layout, Card, Text, BlockStack, Box } from "@shopify/polaris";
 import { TitleBar } from "@shopify/app-bridge-react";

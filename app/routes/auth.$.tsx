@@ -1,7 +1,14 @@
-// app/routes/auth.$.tsx 
-import type { LoaderFunctionArgs } from "@remix-run/node"; 
-import { authenticate } from "../shopify.server"; 
-export const loader = async ({ request }: LoaderFunctionArgs) => { 
-  await authenticate.admin(request); 
-  return null; 
+// // app/routes/auth.$.tsx 
+// import type { LoaderFunctionArgs } from "@remix-run/node"; 
+// import { authenticate } from "../shopify.server"; 
+// export const loader = async ({ request }: LoaderFunctionArgs) => { 
+//   await authenticate.admin(request); 
+//   return null; 
+// };
+
+import type { LoaderFunctionArgs } from "@remix-run/node";
+import { authenticate } from "../shopify.server";
+
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+  return authenticate.admin(request);
 };

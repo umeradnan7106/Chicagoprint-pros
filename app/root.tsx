@@ -1,3 +1,4 @@
+// // app/root.tsx
 // import {
 //   Links,
 //   Meta,
@@ -5,23 +6,45 @@
 //   Scripts,
 //   ScrollRestoration,
 // } from "@remix-run/react";
+// import { json, type LoaderFunctionArgs } from "@remix-run/node";
+// import { AppProvider as ShopifyAppProvider } from "@shopify/shopify-app-remix/react";
+// import { AppProvider as PolarisProvider } from "@shopify/polaris";
+// import enTranslations from "@shopify/polaris/locales/en.json";
+
+// import { addDocumentResponseHeaders } from "./shopify.server";
+
+// // TypeScript global fix
+// declare global {
+//   interface Window {
+//     __SHOPIFY_API_KEY__?: string;
+//     __SHOPIFY_DEV_API_KEY__?: string;
+//   }
+// }
+
+// export async function loader({ request }: LoaderFunctionArgs) {
+//   const headers = new Headers();
+//   addDocumentResponseHeaders(request, headers);
+//   return json({}, { headers });
+// }
 
 // export default function App() {
+//   const apiKey =
+//     typeof window !== "undefined"
+//       ? window.__SHOPIFY_API_KEY__ || window.__SHOPIFY_DEV_API_KEY__
+//       : undefined;
+
 //   return (
-//     <html>
+//     <html lang="en">
 //       <head>
-//         <meta charSet="utf-8" />
-//         <meta name="viewport" content="width=device-width,initial-scale=1" />
-//         <link rel="preconnect" href="https://cdn.shopify.com/" />
-//         <link
-//           rel="stylesheet"
-//           href="https://cdn.shopify.com/static/fonts/inter/v4/styles.css"
-//         />
 //         <Meta />
 //         <Links />
 //       </head>
 //       <body>
-//         <Outlet />
+//         <ShopifyAppProvider apiKey={apiKey!}>
+//           <PolarisProvider i18n={enTranslations}>
+//             <Outlet />
+//           </PolarisProvider>
+//         </ShopifyAppProvider>
 //         <ScrollRestoration />
 //         <Scripts />
 //       </body>
@@ -29,7 +52,7 @@
 //   );
 // }
 
-// app/root.tsx
+
 import {
   Links,
   Meta,
@@ -40,11 +63,10 @@ import {
 import { json, type LoaderFunctionArgs } from "@remix-run/node";
 import { AppProvider as ShopifyAppProvider } from "@shopify/shopify-app-remix/react";
 import { AppProvider as PolarisProvider } from "@shopify/polaris";
-import enTranslations from "@shopify/polaris/locales/en.json";
+import enTranslations from "@shopify/polaris/locales/en.json" with { type: "json" };
 
 import { addDocumentResponseHeaders } from "./shopify.server";
 
-// TypeScript global fix
 declare global {
   interface Window {
     __SHOPIFY_API_KEY__?: string;

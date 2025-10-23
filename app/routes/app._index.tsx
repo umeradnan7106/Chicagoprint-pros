@@ -21,6 +21,7 @@ export default function Index() {
                 <Text variant="heading2xl" as="h1">
                   👋 Welcome to <strong>Chicago App</strong>
                 </Text>
+                <p>Welcome to Chicago App</p>
 
                 <Text as="p" tone="subdued" alignment="center">
                   A custom Shopify solution built to simplify your store management,

@@ -1,10 +1,24 @@
 {
+  "buildCommand": "remix build",
+  "framework": "remix",
+  "installCommand": "npm install",
+  "functions": {
+    "build/index.js": {
+      "maxDuration": 30
+    }
+  },
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/build/index.js"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
         {
-          "key": "X-Frame-Options",
+          "key": "X-Frame-Options", 
           "value": "ALLOWALL"
         },
         {

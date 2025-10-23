@@ -1,20 +1,4 @@
 {
-  "buildCommand": "npm run build",
-  "outputDirectory": "build/client",
-  "installCommand": "npm install",
-  "functions": {
-    "build/server/index.js": {
-      "runtime": "nodejs18.x"
-    }
-  },
-  "routes": [
-    {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/(.*)"
-    }
-  ],
   "headers": [
     {
       "source": "/(.*)",

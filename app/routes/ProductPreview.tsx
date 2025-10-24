@@ -16,7 +16,7 @@
 //   );
 // }
 
-import type { Product } from "./app.products";
+import type { Product } from "./app/products";
 import "./styles/design-uploader.css";
 
 interface ProductPreviewProps {

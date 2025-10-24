@@ -51,7 +51,7 @@
 // app/routes/Sidebar.tsx
 
 import { useEffect, useState } from "react";
-import type { Product } from "./app.products";
+import type { Product } from "./app/products";
 
 interface SidebarProps {
   onSelect: (product: Product) => void;

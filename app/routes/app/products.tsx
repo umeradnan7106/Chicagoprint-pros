@@ -1,10 +1,10 @@
 // app/routes/app.ProductsPage.tsx
-import Sidebar from "./Sidebar";
-import ProductPreview from "./ProductPreview";
-import SaveButton from "./SaveButton";
+import Sidebar from "../Sidebar";
+import ProductPreview from "../ProductPreview";
+import SaveButton from "../SaveButton";
 import "./styles/design-uploader.css";
 import { useState } from "react";
-import GroupedVariantEditor from "./GroupedVariantTable";
+import GroupedVariantEditor from "../GroupedVariantTable";
 
 export interface Product {
   id: number;
